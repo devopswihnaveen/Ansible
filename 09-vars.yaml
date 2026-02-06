@@ -1,7 +1,7 @@
-- name: local variables from inventory local-ini file
+- name: play level variables
   hosts: local
   connection: local
   tasks:
   - name: print variables
     ansible.builtin.debug:
-      msg: " Name is : {{ Name }}"
+      msg: "Course is: {{ COURSE }}"
