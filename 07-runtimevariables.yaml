@@ -1,20 +1,16 @@
-- name: play with runtime variables
-  hosts: localhost
-  gather_facts: no
-  tasks:
-    - name: set a variable at runtime
-      set_fact:
-        my_runtime_variable: "Hello, I am a runtime variable!"
-    
-    - name: display the runtime variable
-      debug:
-        msg: "{{ my_runtime_variable }}"
+- name: print username and password
+  hosts: local
+  connection: local
+  vars_prompt:
+  - name: username
+    prompt: Please enter your username
+    private: false
 
-    - name: prompt the user for input and set it as a variable
-      vars_prompt:
-        - name: user_input
-          prompt: "Please enter a value for the variable"
-          private: no
-        - name: user_secret
-          prompt: "Please enter a secret value for the variable"
-          private: yes
+  - name: password
+    prompt: please enter your password
+    private: true
+  
+  tasks:
+  - name: print info
+    ansible.builtin.debug:
+      msg: "username is: {{ username }}, password is: {{ password }}"
