@@ -1,5 +1,6 @@
 - name: install nginx and serve the static content
   hosts: localhost
+  become: true
   tasks:
     - name: install nginx
       ansible.builtin.yum:
