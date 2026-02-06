@@ -1,0 +1,9 @@
+- name: play with external variables file
+  hosts: local
+  connection: local
+  vars_files:
+    - course.yaml
+  tasks:
+  - name: print variables
+    ansible.builtin.debug:
+      msg: "Course is: {{ COURSE }}, Learner is: {{ LEARNER }}"

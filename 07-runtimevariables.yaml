@@ -1,0 +1,20 @@
+- name: play with runtime variables
+  hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: set a variable at runtime
+      set_fact:
+        my_runtime_variable: "Hello, I am a runtime variable!"
+    
+    - name: display the runtime variable
+      debug:
+        msg: "{{ my_runtime_variable }}"
+
+    - name: prompt the user for input and set it as a variable
+      vars_prompt:
+        - name: user_input
+          prompt: "Please enter a value for the variable"
+          private: no
+        - name: user_secret
+          prompt: "Please enter a secret value for the variable"
+          private: yes

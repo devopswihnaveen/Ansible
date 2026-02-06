@@ -1,0 +1,17 @@
+- name: install nginx and serve the static content
+  hosts: localhost
+  tasks:
+    - name: install nginx
+      ansible.builtin.yum:
+        name: nginx
+        state: present
+
+    - name: start nginx service
+      ansible.builtin.service:
+        name: nginx
+        state: started
+
+    - name: create index.html file
+      ansible.builtin.copy:
+        dest: /usr/share/nginx/html/index.html
+        content: "Welcome to Ansible Automation"

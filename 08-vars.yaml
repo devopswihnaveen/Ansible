@@ -1,0 +1,13 @@
+- name: print variables from an external file
+  hosts: localhost
+  gather_facts: no
+  vars_files:
+    - vars.yaml
+  tasks:
+    - name: display variable1
+      debug:
+        msg: "Variable1 is: {{ variable1 }}"
+
+    - name: display variable2
+      debug:
+        msg: "Variable2 is: {{ variable2 }}"
