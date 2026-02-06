@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450">
+  <!-- Title -->
+  <text x="400" y="30" font-size="24" font-weight="bold" text-anchor="middle" fill="#333">Branching Workflow</text>
+  
+  <!-- Main branch -->
+  <line x1="100" y1="100" x2="700" y2="100" stroke="#333" stroke-width="4"/>
+  <circle cx="100" cy="100" r="8" fill="#4caf50"/>
+  <circle cx="250" cy="100" r="8" fill="#4caf50"/>
+  <circle cx="550" cy="100" r="8" fill="#4caf50"/>
+  <circle cx="700" cy="100" r="8" fill="#4caf50"/>
+  
+  <text x="100" y="85" font-size="14" font-weight="bold" text-anchor="middle" fill="#4caf50">main</text>
+  <text x="700" y="85" font-size="12" text-anchor="middle" fill="#666">✓ PROD</text>
+  
+  <!-- Feature Branch 1 -->
+  <g>
+    <path d="M 250 100 Q 250 130, 280 160 L 480 160 Q 510 160, 550 130 L 550 100" 
+          stroke="#2196f3" stroke-width="3" fill="none"/>
+    <circle cx="280" cy="160" r="6" fill="#2196f3"/>
+    <circle cx="380" cy="160" r="6" fill="#2196f3"/>
+    <circle cx="480" cy="160" r="6" fill="#2196f3"/>
+    
+    <text x="380" y="145" font-size="13" font-weight="bold" text-anchor="middle" fill="#2196f3">feature/user-auth</text>
+    
+    <!-- Workflow steps -->
+    <rect x="260" y="185" width="100" height="30" fill="#e3f2fd" stroke="#2196f3" stroke-width="1" rx="3"/>
+    <text x="310" y="205" font-size="10" text-anchor="middle" fill="#1565c0">1. Development</text>
+    
+    <rect x="370" y="185" width="80" height="30" fill="#e3f2fd" stroke="#2196f3" stroke-width="1" rx="3"/>
+    <text x="410" y="205" font-size="10" text-anchor="middle" fill="#1565c0">2. CI/CD</text>
+    
+    <rect x="460" y="185" width="60" height="30" fill="#e3f2fd" stroke="#2196f3" stroke-width="1" rx="3"/>
+    <text x="490" y="205" font-size="10" text-anchor="middle" fill="#1565c0">3. PR</text>
+  </g>
+  
+  <!-- Feature Branch 2 -->
+  <g>
+    <path d="M 250 100 Q 250 250, 280 280 L 430 280 Q 460 280, 490 250 L 490 220" 
+          stroke="#ff9800" stroke-width="3" fill="none" stroke-dasharray="5,5"/>
+    <circle cx="280" cy="280" r="6" fill="#ff9800"/>
+    <circle cx="360" cy="280" r="6" fill="#ff9800"/>
+    
+    <text x="350" y="265" font-size="13" font-weight="bold" text-anchor="middle" fill="#ff9800">feature/payment</text>
+    <text x="350" y="305" font-size="10" text-anchor="middle" fill="#e65100">In Progress...</text>
+  </g>
+  
+  <!-- Feature Branch 3 -->
+  <g>
+    <path d="M 100 100 Q 100 350, 130 380 L 280 380 Q 310 380, 340 350 L 340 320" 
+          stroke="#9c27b0" stroke-width="3" fill="none" stroke-dasharray="5,5"/>
+    <circle cx="130" cy="380" r="6" fill="#9c27b0"/>
+    <circle cx="205" cy="380" r="6" fill="#9c27b0"/>
+    
+    <text x="200" y="365" font-size="13" font-weight="bold" text-anchor="middle" fill="#9c27b0">feature/dashboard</text>
+    <text x="200" y="405" font-size="10" text-anchor="middle" fill="#7b1fa2">Testing...</text>
+  </g>
+  
+  <!-- Pull Request indicator -->
+  <g>
+    <rect x="520" y="115" width="120" height="40" fill="#fff9c4" stroke="#f57f17" stroke-width="2" rx="5"/>
+    <text x="580" y="132" font-size="11" font-weight="bold" text-anchor="middle" fill="#f57f17">Pull Request</text>
+    <text x="580" y="147" font-size="9" text-anchor="middle" fill="#827717">Code Review ✓</text>
+  </g>
+  
+  <!-- Legend -->
+  <rect x="50" y="420" width="700" height="20" fill="#f5f5f5" stroke="#999" stroke-width="1" rx="3"/>
+  <text x="60" y="433" font-size="10" fill="#555">⚠️ Never develop directly on main branch!</text>
+  <text x="400" y="433" font-size="10" fill="#555">Always create feature branches → develop → test → merge</text>
+</svg>

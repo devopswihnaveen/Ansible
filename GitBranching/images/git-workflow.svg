@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 300">
+  <!-- Title -->
+  <text x="400" y="30" font-size="24" font-weight="bold" text-anchor="middle" fill="#333">Git Workflow</text>
+  
+  <!-- Working Directory -->
+  <rect x="50" y="80" width="140" height="140" fill="#e3f2fd" stroke="#1976d2" stroke-width="2" rx="5"/>
+  <text x="120" y="110" font-size="14" font-weight="bold" text-anchor="middle" fill="#1976d2">Working</text>
+  <text x="120" y="130" font-size="14" font-weight="bold" text-anchor="middle" fill="#1976d2">Directory</text>
+  <text x="120" y="160" font-size="12" text-anchor="middle" fill="#555">Files you're</text>
+  <text x="120" y="178" font-size="12" text-anchor="middle" fill="#555">working on</text>
+  
+  <!-- Staging Area -->
+  <rect x="240" y="80" width="140" height="140" fill="#fff3e0" stroke="#f57c00" stroke-width="2" rx="5"/>
+  <text x="310" y="110" font-size="14" font-weight="bold" text-anchor="middle" fill="#f57c00">Staging Area</text>
+  <text x="310" y="130" font-size="12" text-anchor="middle" fill="#555">(Index)</text>
+  <text x="310" y="160" font-size="12" text-anchor="middle" fill="#555">Files ready</text>
+  <text x="310" y="178" font-size="12" text-anchor="middle" fill="#555">to commit</text>
+  
+  <!-- Local Repository -->
+  <rect x="430" y="80" width="140" height="140" fill="#f1f8e9" stroke="#689f38" stroke-width="2" rx="5"/>
+  <text x="500" y="110" font-size="14" font-weight="bold" text-anchor="middle" fill="#689f38">Local</text>
+  <text x="500" y="130" font-size="14" font-weight="bold" text-anchor="middle" fill="#689f38">Repository</text>
+  <text x="500" y="160" font-size="12" text-anchor="middle" fill="#555">Committed</text>
+  <text x="500" y="178" font-size="12" text-anchor="middle" fill="#555">snapshots</text>
+  
+  <!-- Remote Repository -->
+  <rect x="620" y="80" width="140" height="140" fill="#fce4ec" stroke="#c2185b" stroke-width="2" rx="5"/>
+  <text x="690" y="110" font-size="14" font-weight="bold" text-anchor="middle" fill="#c2185b">Remote</text>
+  <text x="690" y="130" font-size="14" font-weight="bold" text-anchor="middle" fill="#c2185b">Repository</text>
+  <text x="690" y="160" font-size="12" text-anchor="middle" fill="#555">Shared with</text>
+  <text x="690" y="178" font-size="12" text-anchor="middle" fill="#555">team</text>
+  
+  <!-- Arrows -->
+  <!-- git add -->
+  <path d="M 195 150 L 235 150" stroke="#333" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  <text x="215" y="145" font-size="11" text-anchor="middle" fill="#333">git add</text>
+  
+  <!-- git commit -->
+  <path d="M 385 150 L 425 150" stroke="#333" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  <text x="405" y="145" font-size="11" text-anchor="middle" fill="#333">git commit</text>
+  
+  <!-- git push -->
+  <path d="M 575 150 L 615 150" stroke="#333" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  <text x="595" y="145" font-size="11" text-anchor="middle" fill="#333">git push</text>
+  
+  <!-- git pull -->
+  <path d="M 615 170 L 575 170" stroke="#666" stroke-width="2" fill="none" marker-end="url(#arrowhead-gray)" stroke-dasharray="5,5"/>
+  <text x="595" y="188" font-size="11" text-anchor="middle" fill="#666">git pull</text>
+  
+  <!-- Arrow marker -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#333"/>
+    </marker>
+    <marker id="arrowhead-gray" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#666"/>
+    </marker>
+  </defs>
+  
+  <!-- Legend -->
+  <text x="50" y="260" font-size="11" fill="#555">Commands:</text>
+  <text x="50" y="280" font-size="10" fill="#555">• git add - Stage changes</text>
+  <text x="250" y="280" font-size="10" fill="#555">• git commit - Save to local repo</text>
+  <text x="480" y="280" font-size="10" fill="#555">• git push - Upload to remote</text>
+</svg>

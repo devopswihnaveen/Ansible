@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450">
+  <!-- Title -->
+  <text x="400" y="30" font-size="24" font-weight="bold" text-anchor="middle" fill="#333">Git Reset --mixed (Default)</text>
+  <text x="400" y="55" font-size="13" text-anchor="middle" fill="#666">Undo commit, move changes to working directory</text>
+  
+  <!-- Before Reset -->
+  <g id="before">
+    <text x="150" y="100" font-size="16" font-weight="bold" fill="#666">Before Reset:</text>
+    
+    <!-- Working Directory -->
+    <rect x="50" y="120" width="120" height="100" fill="#e3f2fd" stroke="#2196f3" stroke-width="2" rx="5"/>
+    <text x="110" y="145" font-size="13" font-weight="bold" text-anchor="middle" fill="#2196f3">Working</text>
+    <text x="110" y="165" font-size="13" font-weight="bold" text-anchor="middle" fill="#2196f3">Directory</text>
+    <text x="110" y="195" font-size="10" text-anchor="middle" fill="#555">Clean</text>
+    
+    <!-- Staging Area -->
+    <rect x="200" y="120" width="120" height="100" fill="#fff3e0" stroke="#ff9800" stroke-width="2" rx="5"/>
+    <text x="260" y="145" font-size="13" font-weight="bold" text-anchor="middle" fill="#ff9800">Staging</text>
+    <text x="260" y="165" font-size="13" font-weight="bold" text-anchor="middle" fill="#ff9800">Area</text>
+    <text x="260" y="195" font-size="10" text-anchor="middle" fill="#555">Empty</text>
+    
+    <!-- Repository -->
+    <rect x="350" y="120" width="120" height="100" fill="#f1f8e9" stroke="#689f38" stroke-width="2" rx="5"/>
+    <text x="410" y="145" font-size="13" font-weight="bold" text-anchor="middle" fill="#689f38">Repository</text>
+    <circle cx="380" cy="175" r="8" fill="#689f38"/>
+    <circle cx="410" cy="175" r="8" fill="#689f38"/>
+    <circle cx="440" cy="175" r="8" fill="#689f38"/>
+    <text x="380" y="160" font-size="9" text-anchor="middle">A</text>
+    <text x="410" y="160" font-size="9" text-anchor="middle">B</text>
+    <text x="440" y="160" font-size="9" text-anchor="middle">C</text>
+    <text x="410" y="205" font-size="10" text-anchor="middle" fill="#d32f2f">← HEAD</text>
+  </g>
+  
+  <!-- Command -->
+  <g id="command">
+    <rect x="150" y="240" width="220" height="35" fill="#ffebee" stroke="#f44336" stroke-width="2" rx="5"/>
+    <text x="260" y="263" font-size="14" font-weight="bold" text-anchor="middle" fill="#c62828">git reset HEAD~1</text>
+  </g>
+  
+  <!-- Arrow -->
+  <path d="M 260 275 L 260 295" stroke="#f44336" stroke-width="3" marker-end="url(#arrow-red)"/>
+  
+  <!-- After Reset -->
+  <g id="after">
+    <text x="150" y="330" font-size="16" font-weight="bold" fill="#666">After Reset:</text>
+    
+    <!-- Working Directory -->
+    <rect x="50" y="350" width="120" height="100" fill="#e3f2fd" stroke="#2196f3" stroke-width="2" rx="5"/>
+    <text x="110" y="375" font-size="13" font-weight="bold" text-anchor="middle" fill="#2196f3">Working</text>
+    <text x="110" y="395" font-size="13" font-weight="bold" text-anchor="middle" fill="#2196f3">Directory</text>
+    <text x="110" y="415" font-size="10" font-weight="bold" text-anchor="middle" fill="#ff9800">Changes from C</text>
+    <text x="110" y="430" font-size="9" text-anchor="middle" fill="#f57c00">Unstaged</text>
+    
+    <!-- Glow effect -->
+    <circle cx="110" cy="405" r="35" fill="none" stroke="#ff9800" stroke-width="2" stroke-dasharray="3,3"/>
+    
+    <!-- Staging Area -->
+    <rect x="200" y="350" width="120" height="100" fill="#fff3e0" stroke="#ff9800" stroke-width="2" rx="5"/>
+    <text x="260" y="375" font-size="13" font-weight="bold" text-anchor="middle" fill="#ff9800">Staging</text>
+    <text x="260" y="395" font-size="13" font-weight="bold" text-anchor="middle" fill="#ff9800">Area</text>
+    <text x="260" y="425" font-size="10" text-anchor="middle" fill="#555">Empty</text>
+    
+    <!-- Repository -->
+    <rect x="350" y="350" width="120" height="100" fill="#f1f8e9" stroke="#689f38" stroke-width="2" rx="5"/>
+    <text x="410" y="375" font-size="13" font-weight="bold" text-anchor="middle" fill="#689f38">Repository</text>
+    <circle cx="380" cy="405" r="8" fill="#689f38"/>
+    <circle cx="410" cy="405" r="8" fill="#689f38"/>
+    <circle cx="440" cy="405" r="8" fill="#bdbdbd" stroke="#999" stroke-width="1"/>
+    <text x="380" y="390" font-size="9" text-anchor="middle">A</text>
+    <text x="410" y="390" font-size="9" text-anchor="middle">B</text>
+    <text x="440" y="390" font-size="9" text-anchor="middle">C</text>
+    <text x="410" y="435" font-size="10" text-anchor="middle" fill="#d32f2f">← HEAD</text>
+  </g>
+  
+  <!-- Info box -->
+  <rect x="500" y="200" width="270" height="160" fill="#fff3e0" stroke="#ff9800" stroke-width="2" rx="5"/>
+  <text x="635" y="225" font-size="14" font-weight="bold" text-anchor="middle" fill="#f57c00">Mixed Reset Effect:</text>
+  <text x="515" y="250" font-size="11" fill="#e65100">✓ Commit removed</text>
+  <text x="515" y="270" font-size="11" fill="#e65100">✓ Staging cleared</text>
+  <text x="515" y="290" font-size="11" fill="#e65100">✓ Changes in working dir</text>
+  <text x="515" y="310" font-size="11" fill="#e65100">✓ Need to git add again</text>
+  <text x="635" y="335" font-size="10" font-style="italic" text-anchor="middle" fill="#e65100">Use when: Want to unstage</text>
+  <text x="635" y="352" font-size="10" font-style="italic" text-anchor="middle" fill="#e65100">and modify files</text>
+  
+  <defs>
+    <marker id="arrow-red" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#f44336"/>
+    </marker>
+  </defs>
+</svg>

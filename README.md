@@ -61,15 +61,17 @@ Ansible/
 └── README.md
 ```
 
-📦 Inventory File
+# 📦 Inventory File
+```
 [web]
 web1 ansible_host=192.168.1.10
 web2 ansible_host=192.168.1.11
 
 [db]
 db1 ansible_host=192.168.1.20
+```
 
-▶️ Sample Playbook
+# ▶️ Sample Playbook
 ---
 - name: Install and start nginx
   hosts: web
@@ -86,10 +88,11 @@ db1 ansible_host=192.168.1.20
         state: started
         enabled: yes
 
-🔐 Privilege Escalation (become)
+# 🔐 Privilege Escalation (become)
+```
 become: yes
 become_user: root
-
+```
 
 Used when:
 
@@ -99,12 +102,14 @@ Managing services
 
 Editing system files
 
-📦 Built-in Modules (Why They’re Better)
+# 📦 Built-in Modules (Why They’re Better)
+
 🔹 package module
+```
 package:
   name: httpd
   state: present
-
+```
 
 ✔ Works across distros (yum / apt)
 ✔ Idempotent
