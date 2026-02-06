@@ -3,6 +3,18 @@
   connection: local
   become: true
   tasks:
+
+    - name: Stop Nginx service
+      service:
+        name: nginx
+        state: stopped
+        enabled: no
+
+    - name: Uninstall Nginx package
+      yum:
+        name: nginx
+        state: absent
+
     - name: install nginx
       ansible.builtin.yum:
         name: nginx
