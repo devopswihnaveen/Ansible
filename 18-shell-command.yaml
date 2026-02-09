@@ -6,3 +6,33 @@
     ansible.builtin.shell: "echo Hello, World!" #this will run the command in a shell environment, allowing for features like variable expansion, command chaining, pipe, Redirectionns etc. 
   - name: run a shell command using command module
     ansible.builtin.command: "echo Hello, World!" #this will run the command directly without invoking a shell, which means that features like variable expansion, command chaining, pipe, Redirectionns etc. will not work. It is more secure and efficient for simple commands that do not require shell features.
+  - name: command module with arguments
+    ansible.builtin.command:
+      cmd: "ls -l /tmp" 
+
+  # - name: shell module with arguments
+  #   ansible.builtin.shell:
+  #     cmd: "ls -l /tmp" 
+
+  - name: shell module with pipe
+    ansible.builtin.shell: "ls -l /tmp | grep 'test'"
+    register: shell_output
+
+  # - name: command module with pipe (this will not work because command module does not support shell features)
+  #   ansible.builtin.command: "ls -l /tmp | grep 'test'"
+  
+  - name: print output
+    ansible.builtin.debug:
+      msg: "{{ shell_output.stdout }}"   
+      
+      # shell_output → a variable created using register
+      # stdout → standard output (what the command printed to the terminal)
+
+  - name: print output using command module (this will not work because command module does not support shell features)
+    ansible.builtin.debug:
+      msg: "{{ command_output.stdout }}"
+
+
+
+# command is preferred for security and predictability.
+# shell should be used only when shell features are required.
