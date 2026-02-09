@@ -5,7 +5,7 @@
     name: "Argument from play Variable"
   # vars_files:
   # - variables.yaml
-  vars_prompt:
+  # vars_prompt:
     # name: "name"
     # prompt: "Please enter your name:"
     private: no
