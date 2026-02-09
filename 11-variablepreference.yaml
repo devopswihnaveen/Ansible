@@ -6,7 +6,7 @@
   vars_files:
   - variables.yaml
   vars_prompt:
-    name: "NAME"
+    name: "name"
     prompt: "Please enter your name:"
     private: no
   tasks:
