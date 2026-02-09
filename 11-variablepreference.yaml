@@ -8,7 +8,7 @@
   # vars_prompt:
     # name: "name"
     # prompt: "Please enter your name:"
-    private: no
+    # private: no
   tasks:
   - name: print variable with variable preference
     # vars:
@@ -22,5 +22,7 @@
 ## 1. Variable from Arguments
 ## 2. Variable from Task
 ## 3. Variable from vars_files
-## 4. Variable from Task    
-## 5. Variable from vars_prompt  
+## 4. Variable from vars_prompt    
+## 5. Variable from Play Variable
+## 6. Variable from inventory
+## 7. Variable from facts
