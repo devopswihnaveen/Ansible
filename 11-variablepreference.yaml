@@ -1,0 +1,17 @@
+- name: Print variable with variable preference
+  host: localhost
+  connection: local
+  vars:
+    name: "Argument Variable"
+  vars_files:
+  - variables.yaml
+  user_prompts:
+    name: "NAME"
+    prompt: "Please enter your name:"
+    private: no
+  tasks:
+  - name: print variable with variable preference
+    vars:
+      name: "Ansible from Task Variable"
+    ansible.builtin.debug:
+      msg: "Hi {{ name }}. Good Morning. Welcome to Ansible Automation"
