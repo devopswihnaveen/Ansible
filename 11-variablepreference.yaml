@@ -1,8 +1,8 @@
 - name: Print variable with variable preference
   hosts: localhost
   connection: local
-  vars:
-    name: "Argument from play Variable"
+  # vars:
+  #   name: "Argument from play Variable"
   # vars_files:
   # - variables.yaml
   # vars_prompt:
