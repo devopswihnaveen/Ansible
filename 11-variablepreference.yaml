@@ -3,8 +3,8 @@
   connection: local
   vars:
     name: "Argument Variable"
-  vars_files:
-  - variables.yaml
+  # vars_files:
+  # - variables.yaml
   vars_prompt:
     name: "name"
     prompt: "Please enter your name:"
@@ -18,5 +18,5 @@
 
 ## 1. Variable from Arguments
 ## 2. Variable from Task
-## 3. Variable from Prompt
+## 3. Variable from vars_files
 ## 4. Variable from Task      
