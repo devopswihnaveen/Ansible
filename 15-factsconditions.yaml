@@ -9,8 +9,42 @@
     ansible.builtin.debug:
       msg: "Yes, Package Manager is RedHat based"
     when: ansible_facts['ansible_os_family'] == "RedHat" #this task will be executed only if the operating system is RedHat based otherwise it will be skipped
+    # when: ansible_facts.os_family == "RedHat" #this task will be executed only if the operating system is RedHat based otherwise it will be skipped
+
   - name: print the operating system
     ansible.builtin.debug:
       msg: "Yes, Package Manager is Debian based"
     when: ansible_facts['ansible_os_family'] == "Debian" #this task will be executed only if the operating system is Debian based otherwise it will be skipped
+    # when: ansible_facts.os_family == "Debian" #this task will be executed only if the operating system is Debian based otherwise it will be skipped
 
+
+
+    # Dot notation = convenience
+    # Bracket notation = safety
+
+
+    # Ansible exposes some fact keys as attributes
+
+    # os_family is a shortcut for ansible_os_family
+
+    # Pros
+
+    # Cleaner and easier to read
+    # Commonly used in playbooks
+    # Recommended by Ansible for standard facts
+
+    # Limitations
+
+    # Works only for keys that Ansible maps safely
+    # Fails if the key name isn’t a valid variable name
+
+    # Why both work here?
+
+    # During fact gathering, Ansible provides aliases:
+
+    # ansible_facts['ansible_os_family']
+    # Or
+    # ansible_facts.os_family
+
+
+    # So internally, both point to the same value.
