@@ -1,5 +1,5 @@
 - name: Print variable with variable preference
-  host: localhost
+  hosts: localhost
   connection: local
   vars:
     name: "Argument Variable"
