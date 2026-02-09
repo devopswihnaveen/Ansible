@@ -1,0 +1,24 @@
+- name: variables from datatypes
+  hosts: localhost
+  connection: local
+  vars:
+    name: "variable from datatypes" #String 
+    age: 30 #Integer
+    is_employed: true #Boolean
+    details: #Dictionary
+      program: Hello Ansible
+      outcome: success
+    skills: #List
+      - Ansible
+      - Python
+      - Linux
+      - DevOps
+  tasks:
+  - name: print variables from datatypes
+    ansible.builtin.debug:
+      msg: |
+        "Hi {{ name }}. You are {{ age }} years old."
+        "You are employed: {{ is_employed }}."
+        "Details: {{ details }}."
+        "Skills: {{ skills }}."
+        "Welcome to Ansible Automation with different data types."
