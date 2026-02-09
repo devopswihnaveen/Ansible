@@ -1,0 +1,19 @@
+- name: playbook for conditions in Ansible
+  hosts: localhost
+  connection: local
+  vars:
+    name: "Naveen Kumar"
+    age: 30
+    is_employed: true
+  tasks:
+  - name: print message based on conditions
+    ansible.builtin.debug:
+      msg: |
+        Hi {{ name }}
+        {% if age >= 18 and is_employed %}
+        You are eligible for a loan.
+        {% elif age >= 18 and not is_employed %}
+        You are eligible for a student loan.
+        {% else %}
+        You are not eligible for a loan.
+        {% endif %}
