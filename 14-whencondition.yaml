@@ -3,7 +3,7 @@
   connection: local
   vars:
     name: "NaveenKumar"
-    age: 16
+    age: 30
     numberofsiblings: 2
   tasks:
   - name: print message based on when conditions
@@ -11,4 +11,4 @@
       msg: |
         Hi {{ name }}
         You have {{ numberofsiblings }} siblings.
-    when: age >= 18 and numberofsiblings > 0
+    when: age >= 18 and numberofsiblings > 0      #this task will be executed only if the age is greater than or equal to 18 and number of siblings is greater than 0 otherwise it will be skipped
