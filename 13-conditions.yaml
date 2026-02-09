@@ -2,8 +2,8 @@
   hosts: localhost
   connection: local
   vars:
-    name: "Naveen Kumar"
-    age: 30
+    name: "NaveenKumar"
+    age: 16
     is_employed: true
   tasks:
   - name: print message based on conditions
