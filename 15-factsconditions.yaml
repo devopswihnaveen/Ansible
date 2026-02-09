@@ -5,3 +5,4 @@
   - name: gathering facts
     ansible.builtin.debug:
       msg: "{{ ansible_facts }}" 
+      dest: ansible_facts.json
