@@ -5,3 +5,12 @@
   - name: gathering facts
     ansible.builtin.debug:
       msg: "{{ ansible_facts }}" 
+  - name: print the operating system
+    ansible.builtin.debug:
+      msg: "Yes, Package Manager is RedHat based"
+    when: ansible_facts['ansible_os_family'] == "RedHat" #this task will be executed only if the operating system is RedHat based otherwise it will be skipped
+  - name: print the operating system
+    ansible.builtin.debug:
+      msg: "Yes, Package Manager is Debian based"
+    when: ansible_facts['ansible_os_family'] == "Debian" #this task will be executed only if the operating system is Debian based otherwise it will be skipped
+
