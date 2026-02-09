@@ -5,7 +5,7 @@
     name: "Argument Variable"
   vars_files:
   - variables.yaml
-  user_prompts:
+  user_prompt:
     name: "NAME"
     prompt: "Please enter your name:"
     private: no
