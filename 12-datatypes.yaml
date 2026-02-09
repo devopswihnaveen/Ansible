@@ -17,7 +17,8 @@
   - name: print variables from datatypes
     ansible.builtin.debug:
       msg: |
-        "Hi {{ name }}. You are {{ age }} years old."
+        "Hi {{ name }}."" 
+        "You are {{ age }} years old."
         "You are employed: {{ is_employed }}."
         "Details: {{ details }}."
         "Skills: {{ skills }}."
