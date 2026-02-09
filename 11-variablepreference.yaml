@@ -11,7 +11,12 @@
     private: no
   tasks:
   - name: print variable with variable preference
-    vars:
-      name: "Ansible from Task Variable"
+    # vars:
+    #   name: "Ansible from Task Variable"
     ansible.builtin.debug:
       msg: "Hi {{ name }}. Good Morning. Welcome to Ansible Automation"
+
+## 1. Variable from Arguments
+## 2. Variable from Task
+## 3. Variable from Prompt
+## 4. Variable from Task      
