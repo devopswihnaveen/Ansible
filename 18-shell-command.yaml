@@ -1,0 +1,8 @@
+- name: ansible command vs shell command module example
+  hosts: localhost
+  connection: local
+  tasks:
+  - name: run a shell command using shell module
+    ansible.builtin.shell: "echo Hello, World!" #this will run the command in a shell environment, allowing for features like variable expansion, command chaining, pipe, Redirectionns etc. 
+  - name: run a shell command using command module
+    ansible.builtin.command: "echo Hello, World!" #this will run the command directly without invoking a shell, which means that features like variable expansion, command chaining, pipe, Redirectionns etc. will not work. It is more secure and efficient for simple commands that do not require shell features.

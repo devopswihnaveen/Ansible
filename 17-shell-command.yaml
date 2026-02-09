@@ -30,7 +30,7 @@
   - name: check the status of the asynchronous task
     ansible.builtin.async_status:
       jid: "{{ async_result.ansible_job_id }}"
-    register: job_result
+    register: job_result # Register the result of the async task to check its status later
     until: job_result.finished
     retries: 5
     delay: 2
