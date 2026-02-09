@@ -1,0 +1,37 @@
+- name: shell command example
+  hosts: localhost
+  connection: local
+  tasks:
+  - name: run a shell command
+    ansible.builtin.shell: "echo Hello, World!"
+  - name: run a shell command with arguments
+    ansible.builtin.shell: "ls -l /tmp"
+  - name: run a shell command and capture output
+    ansible.builtin.shell: "date"
+    register: date_output
+  - name: print the captured output
+    ansible.builtin.debug:
+      msg: "The current date and time is: {{ date_output.stdout }}"
+  - name: run a shell command with environment variables
+    ansible.builtin.shell: "echo $MY_VAR"
+    environment:
+      MY_VAR: "This is an environment variable"
+  - name: run a shell command with a specific working directory
+    ansible.builtin.shell: "pwd"
+    args:
+      chdir: "/tmp"
+  - name: run a shell command and ignore errors
+    ansible.builtin.shell: "ls /nonexistent"
+    ignore_errors: true
+  - name: run a shell command with a timeout
+    ansible.builtin.shell: "sleep 10"
+    async: 5
+    poll: 0
+  - name: check the status of the asynchronous task
+    ansible.builtin.async_status:
+      jid: "{{ async_result.ansible_job_id }}"
+    register: job_result
+    until: job_result.finished
+    retries: 5
+    delay: 2
+

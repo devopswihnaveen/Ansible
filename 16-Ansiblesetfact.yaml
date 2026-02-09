@@ -1,0 +1,10 @@
+- name: ansible set_fact example
+  hosts: localhost
+  connection: local
+  tasks:
+  - name: set a custom fact
+    ansible.builtin.set_fact:
+      my_custom_fact: "This is a custom fact created using set_fact module"
+  - name: print the custom fact
+    ansible.builtin.debug:
+      msg: "{{ my_custom_fact }}"
