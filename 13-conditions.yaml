@@ -3,7 +3,7 @@
   connection: local
   vars:
     name: "NaveenKumar"
-    age: 16
+    age: 20
     is_employed: false
   tasks:
   - name: print message based on conditions
