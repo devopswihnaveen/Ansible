@@ -2,12 +2,12 @@
   hosts: localhost
   connection: local
   vars:
-    name: "Argument Variable"
+    name: "Argument from play Variable"
   # vars_files:
   # - variables.yaml
   vars_prompt:
-    name: "name"
-    prompt: "Please enter your name:"
+    # name: "name"
+    # prompt: "Please enter your name:"
     private: no
   tasks:
   - name: print variable with variable preference
@@ -16,7 +16,11 @@
     ansible.builtin.debug:
       msg: "Hi {{ name }}. Good Morning. Welcome to Ansible Automation"
 
+
+##Variable Preference in Ansible:
+
 ## 1. Variable from Arguments
 ## 2. Variable from Task
 ## 3. Variable from vars_files
-## 4. Variable from Task      
+## 4. Variable from Task    
+## 5. Variable from vars_prompt  
