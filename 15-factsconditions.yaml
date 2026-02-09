@@ -3,6 +3,6 @@
   connection: local
   tasks:
   - name: gathering facts
-    ansible.builtin.debug:
+    ansible.builtin.copy:
       msg: "{{ ansible_facts }}" 
       dest: ansible_facts.json
