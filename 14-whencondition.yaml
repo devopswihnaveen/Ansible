@@ -4,11 +4,11 @@
   vars:
     name: "NaveenKumar"
     age: 20
-    number-of-siblings: 2
+    numberofsiblings: 2
   tasks:
   - name: print message based on when conditions
     ansible.builtin.debug:
       msg: |
         Hi {{ name }}
-        You have {{ number-of-siblings }} siblings.
-    when: age >= 18 and number-of-siblings > 0
+        You have {{ numberofsiblings }} siblings.
+    when: age >= 18 and numberofsiblings > 0
