@@ -12,9 +12,3 @@
         Hi {{ name }}
         You have {{ number-of-siblings }} siblings.
     when: age >= 18 and number-of-siblings > 0
-  - name: print message if age is less than 18
-    ansible.builtin.debug:
-      msg: |
-        Hi {{ name }}
-        You are a minor.
-    when: age < 18 
