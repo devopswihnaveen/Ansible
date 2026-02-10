@@ -1,0 +1,20 @@
+- name: install mongodb with mongodb configuration
+  hosts: localhost
+  connection: local
+  become: true
+  tasks:
+    - name: install mongodb
+      ansible.builtin.yum:
+        name: mongodb-org
+        state: present
+
+    - name: copy the mongodb configuration file
+      ansible.builtin.copy:
+        src: files/mongodb.conf # this is the source path of the mongodb configuration file on the machine where we are executing the ansible-playbook command. We need to create a directory named files in the same directory as the playbook and place the mongodb.conf file inside it. This file should contain the necessary configuration for mongodb to run properly. We can use a sample configuration file from the official mongodb documentation or create our own based on our requirements.
+        dest: /etc/mongod.conf # this is the destination path where we want to copy the mongodb configuration file on the target machine (localhost in this case). The default location for the mongodb configuration file is /etc/mongod.conf, but we can change this path if we want to place it in a different location.
+
+    - name: start mongod service
+      ansible.builtin.service:
+        name: mongod
+        state: started
+        enabled: yes

@@ -42,14 +42,14 @@
       value: "{{ item.instances[0].private_ip_address }}" # this will set the value of the A record to the private IP address of the EC2 instance that was created in the previous task. We are using item.instances[0].private_ip_address to access the private IP address of the first instance in the list of instances that were created. Since we are creating one instance for each item in the loop, we can safely assume that there will be only one instance in the list for each item, and we can access it using index 0.
       wait: true
     loop: "{{ ec2_output.results }}"
-  - name: create r53 records with public IP
+  - name: create r53 records
     amazon.aws.route53:
       state: present
       zone: "{{ domain_name }}"
-      record: "public-{{ item.item }}-{{ env }}.{{ domain_name }}" # project-dev.amaravathi.today
+      record: "project-{{ env }}.{{ domain_name }}" # project-dev.amaravathi.today
       type: A
       ttl: 1
-      value: "{{ item.instances[0].public_ip_address }}" # this will set the value of the A record to the public IP address of the EC2 instance that was created in the previous task. We are using item.instances[0].public_ip_address to access the public IP address of the first instance in the list of instances that were created. Since we are creating one instance for each item in the loop, we can safely assume that there will be only one instance in the list for each item, and we can access it using index 0.
+      value: "{{ item.instances[0].public_ip_address }}"
       wait: true
     loop: "{{ ec2_output.results }}"
-    when: item.item == "frontend"
+    when: item.item == "frontend" # this condition will ensure that we only create the A record for the frontend instance with the public IP address. Since the frontend instance is the only one that needs to be accessible from the internet, we will create an A record for it with the public IP address. The other instances (mongodb and catalogue) will only have A records with their private IP addresses since they do not need to be accessible from the internet.
