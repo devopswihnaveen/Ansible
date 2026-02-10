@@ -1,0 +1,28 @@
+- name: ansible loops
+  hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: loop with a list of items
+      debug:
+        msg: "item is {{ item }}"
+      loop:
+        - one
+        - two
+        - three
+
+    - name: loop with a list of dictionaries
+      debug:
+        msg: "name is {{ item.name }} and age is {{ item.age }}"
+      loop:
+        - { name: Alice, age: 30 }
+        - { name: Bob, age: 25 }
+        - { name: Charlie, age: 35 } 
+
+    - name: install package
+      ansible.builtin.package: #package module
+        name: "{{ item.name }}" # name of package
+        state: "{{ item.state }}" # state of package
+        loop: # list of map
+        - { name: "mysql", state: "absent"} # map/dict
+        - { name: "nginx", state: "present"} # map/dict
+        - { name: "zip", state: "present"} # map/dict

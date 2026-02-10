@@ -1,0 +1,62 @@
+- name: demo on filters
+  hosts: local
+  connection: local
+  vars:
+    topics: linux, shell, ansible, terraform #defining a variable with comma separated values
+    course: "DevOps with Ansible"
+    myIp: "192.23.89.123"
+    tagsMap:
+      name: ansible
+      project: roboshop
+      component: catalogue  #defining a variable with map/dictionary
+    tagsList: [ 
+        {
+            "key": "name",
+            "value": "ansible"
+        },
+        {
+            "key": "project",
+            "value": "roboshop"
+        },
+        {
+            "key": "component",
+            "value": "catalogue"
+        }
+    ]                                             #defining a variable with list of maps/dictionaries
+  tasks:
+  - name: greeting
+    ansible.builtin.debug:
+      msg: "Hi Sivakumar, {{ GREETING | default('Good Morning') }}" # using default filter to set default value for GREETING variable if it is not defined in the inventory or playbook
+
+  - name: convert string to list
+    ansible.builtin.debug:
+      msg: "{{ topics | split(',') }}" # using split filter to convert the string variable topics to a list by splitting it with comma as the delimiter
+
+  - name: convert map to list
+    ansible.builtin.debug:
+      msg: "{{ tagsMap | dict2items }}" # using dict2items filter to convert the map/dictionary variable tagsMap to a list of maps/dictionaries where each map/dictionary has key and value as the keys
+
+  - name: convert list to map
+    ansible.builtin.debug:
+      msg: "{{ tagsList | items2dict }}" # using items2dict filter to convert the list of maps/dictionaries variable tagsList to a map/dictionary where the key is the value of the key key and the value is the value of the value key in each map/dictionary in the list
+
+  - name: read students yaml
+    ansible.builtin.set_fact: # setting the variable
+      student_yaml: "{{ lookup('file', 'students.yaml' ) | from_yaml }}" # using lookup plugin to read the content of students.yaml file and using from_yaml filter to convert the yaml content to a dictionary variable student_yaml
+
+  - name: convert YAML to JSON
+    ansible.builtin.debug:
+      msg: "{{ student_yaml | to_nice_json  }}" # using to_nice_json filter to convert the student_yaml variable which is a dictionary to a JSON string with indentation and newlines for better readability
+
+  - name: convert to upper case
+    ansible.builtin.debug:
+      msg: "{{ course | upper }}" # using upper filter to convert the string variable course to upper case
+
+  - name: convert to lower case
+    ansible.builtin.debug:
+      msg: "{{ course | lower }}" # using lower filter to convert the string variable course to lower case
+
+  - name: check ipv4
+    ansible.builtin.debug:
+      msg: "{{ myIp | ansible.utils.ipv4 }}" # using ipv4 filter to check if the string variable myIp is a valid IPv4 address. It will return the IP address if it is valid or an empty string if it is not valid  (pip3.9 install ansible.utils)
+      

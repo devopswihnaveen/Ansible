@@ -1,5 +1,6 @@
-- name: ping the servers
-  hosts: localhost
-  tasks:
-    - name: ping the servers
-      ansible.builtin.ping:
+- name: ping the servers # this is a simple playbook to ping the servers. We will use this playbook to demonstrate the basic structure of an Ansible playbook and how to run it. The name of the playbook is "ping the servers" and it will run on the localhost. The task is to ping the servers using the ansible.builtin.ping module which will check if the servers are reachable or not. This is a basic playbook that can be used as a starting point for more complex playbooks.
+  hosts: localhost # this playbook will run on the localhost which means it will run on the machine where we are executing the ansible-playbook command. We can change this to a group of servers defined in the inventory file to run the playbook on those servers.
+  gather_facts: no # this will disable the gathering of facts which is the process of collecting information about the target hosts before executing the tasks. Since we are just pinging the servers, we do not need to gather facts which can save time and resources. If we set this to yes, Ansible will gather facts about the target hosts before executing the tasks which can be useful for more complex playbooks that require information about the hosts.
+  tasks: # this is the section where we define the tasks that we want to execute on the target hosts. In this case, we have only one task which is to ping the servers using the ansible.builtin.ping module. We can add more tasks here to perform additional actions on the target hosts as needed.
+    - name: ping the servers # this is the name of the task which is "ping the servers". This name is used to identify the task in the output when we run the playbook. It is a good practice to give meaningful names to the tasks to make it easier to understand what each task is doing when we look at the output.
+      ansible.builtin.ping: # this is the module that we are using to ping the servers. The ansible.builtin.ping module is a simple module that checks if the target hosts are reachable by sending a ping request. If the host is reachable, it will return "pong" and if it is not reachable, it will return an error message. This is a basic module that can be used to check the connectivity of the target hosts before executing more complex tasks on them.

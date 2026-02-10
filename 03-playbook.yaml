@@ -1,31 +1,32 @@
 - name: install nginx and serve the static content
   hosts: localhost
-  connection: local
-  become: true
+  connection: local # this playbook will run on the localhost which means it will run on the machine where we are executing the ansible-playbook command. We can change this to a group of servers defined in the inventory file to run the playbook on those servers.
+  become: true # this will allow us to run the tasks with elevated privileges (as root) which is required to install packages and manage services on the system. By setting become: true, we are telling Ansible to execute the tasks with elevated privileges which allows us to perform actions that require root access, such as installing nginx and managing its service. If we do not set become: true, the tasks that require root privileges will fail with a permission error since they cannot be executed with normal user privileges.
   tasks:
 
     - name: Stop Nginx service
       service:
-        name: nginx
-        state: stopped
-        enabled: no
+        name: nginx # name of the service we want to manage which is nginx in this case
+        state: stopped # this will stop the nginx service if it is running. This is useful to ensure that the service is not running while we are installing or uninstalling packages related to nginx. If the service is not running, this task will have no effect and will continue with the next tasks without any errors.
+        enabled: no # this will disable the nginx service from starting at boot time. This is useful to ensure that the service does not start automatically after we have stopped it. If the service is already disabled, this task will have no effect and will continue with the next tasks without any errors.
 
     - name: Uninstall Nginx package
       yum:
         name: nginx
-        state: absent
+        state: absent # this will uninstall the nginx package if it is installed. This is useful to ensure that we have a clean state before installing nginx again. If the package is not installed, this task will have no effect and will continue with the next tasks without any errors.
 
     - name: install nginx
       ansible.builtin.yum:
         name: nginx
-        state: present
+        state: present # this will install the nginx package if it is not already installed. If the package is already installed, this task will have no effect and will continue with the next tasks without any errors.
 
     - name: start nginx service
       ansible.builtin.service:
         name: nginx
-        state: started
+        state: started # this will start the nginx service if it is not already running. If the service is already running, this task will have no effect and will continue with the next tasks without any errors.
+        enabled: yes # this will enable the nginx service to start at boot time. If the service is already enabled, this task will have no effect and will continue with the next tasks without any errors.
 
     - name: create index.html file
       ansible.builtin.copy:
-        dest: /usr/share/nginx/html/index.html
-        content: "Welcome to Ansible Automation"
+        dest: /usr/share/nginx/html/index.html # this is the destination path where we want to create the index.html file which is the default document root for nginx. We can change this path if we have a different document root configured for nginx.
+        content: "Welcome to Ansible Automation" # this is the content that we want to write to the index.html file. This will create a simple HTML file with the message "Welcome to Ansible Automation" which will be served by nginx when we access the web server. We can change this content to include more complex HTML or even use a template to generate the content dynamically based on variables or other factors.
