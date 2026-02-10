@@ -68,9 +68,9 @@
     loop: "{{ ec2_output.results }}"
     when: action == "delete" # this condition will ensure that we only delete the A records when the action variable is set to "delete". This allows us to control when we want to create or delete the resources by simply changing the value of the action variable at the beginning of the playbook. For example, if we want to create the resources, we can set action to "create", and if we want to delete the resources, we can set action to "delete". This way, we can reuse the same playbook for both creating and deleting resources without having to modify the tasks themselves.
 
-  - name: delete ec2 instances
+  - name: delete ec2 instance
     amazon.aws.ec2_instance:
       state: absent
-      instance_ids: "{{ item.instances[0].instance_id }}"
-    loop: "{{ ec2_output.results }}"
+      name: "{{ item }}-{{ env }}"
+    loop: "{{ instances }}"
     when: action == "delete" # this condition will ensure that we only delete the EC2 instances when the action variable is set to "delete". This allows us to control when we want to create or delete the resources by simply changing the value of the action variable at the beginning of the playbook. For example, if we want to create the resources, we can set action to "create", and if we want to delete the resources, we can set action to "delete". This way, we can reuse the same playbook for both creating and deleting resources without having to modify the tasks themselves.
