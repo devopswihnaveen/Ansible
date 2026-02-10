@@ -73,3 +73,5 @@
     state: absent
     instance_ids: "{{ ec2_info.instances | map(attribute='instance_id') | list }}"
   when: action == "delete"
+
+  

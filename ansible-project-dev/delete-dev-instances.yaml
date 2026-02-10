@@ -1,0 +1,42 @@
+- name: Delete EC2 instances with names ending in -dev
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  vars:
+    aws_region: us-east-1
+    # Regex to match instance Name tag. Default matches names ending with -dev
+    instance_name_pattern: '.*-dev$'
+    # Optional: set `aws_profile` if you use a named AWS CLI profile
+    aws_profile: ''
+
+  tasks:
+    - name: Collect EC2 instance facts
+      amazon.aws.ec2_instance_info:
+        region: "{{ aws_region }}"
+        profile: "{{ aws_profile if aws_profile else omit }}"
+      register: ec2_info
+
+    - name: Build list of instance IDs whose Name tag matches pattern
+      set_fact:
+        matched_ids: >-
+          {{ ec2_info.instances
+             | selectattr('tags.Name', 'search', instance_name_pattern)
+             | map(attribute='instance_id')
+             | list }}
+
+    - name: Show matched instances (debug)
+      debug:
+        msg: "Found {{ matched_ids | length }} instance(s) to delete: {{ matched_ids }}"
+
+    - name: Terminate matched instances
+      amazon.aws.ec2_instance:
+        region: "{{ aws_region }}"
+        instance_ids: "{{ matched_ids }}"
+        state: absent
+      when: matched_ids | length > 0
+
+    - name: Notify if no instances matched
+      debug:
+        msg: "No instances matched pattern '{{ instance_name_pattern }}'"
+      when: matched_ids | length == 0
