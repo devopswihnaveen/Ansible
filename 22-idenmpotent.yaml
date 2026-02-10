@@ -1,0 +1,17 @@
+ - name: playbook for idempotent tasks
+   hosts: localhost
+   connection: local
+   become: yes # this is required to run the command useradd which requires root privileges to create a user. By setting become: yes, we are telling Ansible to execute the tasks with elevated privileges (as root) which allows us to create the user roboshop if it does not exist. If we do not set become: yes, the command useradd will fail with a permission error since it requires root privileges to create a user.
+   tasks:
+   - name: check user exist or not
+     ansible.builtin.command: id roboshop # this command checks if the user roboshop exists or not. If the user exists, it will show the user information, and if it does not exist, it will show an error message. We will use this command to demonstrate error handling in Ansible.
+     register: user_ouput # registering the output of the command to a variable user_ouput which will contain the result of the id command. If the user roboshop exists, it will show the user information, and if it does not exist, it will show an error message. We will use this variable to check if the user exists or not in the next task.
+     ignore_errors: true # this will ignore the error if the user does not exist and continue with the next tasks. This is useful when we want to check if a user exists and create it if it does not exist without failing the playbook.
+
+   - name: print the output
+     ansible.builtin.debug:
+       msg: "{{ user_ouput }}" # printing the output of the previous task which is stored in the variable user_ouput. This will show the result of the id command which checks if the user roboshop exists or not. If the user exists, it will show the user information, and if it does not exist, it will show an error message. Since we have set ignore_errors to true, the playbook will continue to execute even if the id command fails (user does not exist).
+
+   - name: create user
+     ansible.builtin.command: useradd roboshop # this command will create the user roboshop if it does not exist. We will use the when condition to check if the user does not exist (rc != 0) and only then execute this command to create the user. If the user already exists (rc == 0), this task will be skipped. This is a way to handle errors gracefully by checking the return code of a command and taking appropriate action based on it.
+     when: user_ouput.rc != 0 # checking the return code of the previous task to determine if the user does not exist (rc != 0) and only then execute the useradd command to create the user roboshop. If the user already exists (rc == 0), this task will be skipped. This is a way to handle errors gracefully by checking the return code of a command and taking appropriate action based on it.
