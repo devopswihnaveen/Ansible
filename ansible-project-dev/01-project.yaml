@@ -2,8 +2,9 @@
   hosts: all
   connection: local
   vars:
-    sg_id: sg-02582082410591641
+    sg_id: sg-076ec9ad23dab2b28
     ami_id: ami-0220d79f3f480ecf5
+    domain_name: amaravathi.today
     env: dev
     instances:
     - mongodb
@@ -16,7 +17,7 @@
       image_id: "{{ ami_id }}"
       name: "{{ item }}-{{ env }}"
       tags:
-        Project: roboshop
+        Project: ecommerce
         Component: "{{ item }}"
         Environment: "{{ env }}"
         Name: "{{ item }}-{{ env }}"
@@ -27,8 +28,28 @@
     ansible.builtin.debug:
       msg: "{{ ec2_output }}"
 
+  #install boto3 and botocore modules to run the above playbook successfully. These modules are required to interact with AWS services using Ansible. You can install them using pip:
+  #pip install boto3 botocore
+  #and authenticate to AWS using AWS CLI by running the command aws configure and providing your AWS access key, secret key, region, and output format. This will create a credentials file in your home directory that Ansible will use to authenticate with AWS when running the playbook.
 
-#install boto3 and botocore modules to run the above playbook successfully. These modules are required to interact with AWS services using Ansible. You can install them using pip:
-#pip install boto3 botocore
-#and authenticate to AWS using AWS CLI by running the command aws configure and providing your AWS access key, secret key, region, and output format. This will create a credentials file in your home directory that Ansible will use to authenticate with AWS when running the playbook.
-      
+  - name: create r53 records
+    amazon.aws.route53:
+      state: present
+      zone: "{{ domain_name }}"
+      record: "{{ item.item }}-{{ env }}.{{ domain_name }}" # mongodb-dev.amaravathi.today
+      type: A
+      ttl: 1
+      value: "{{ item.instances[0].private_ip_address }}" # this will set the value of the A record to the private IP address of the EC2 instance that was created in the previous task. We are using item.instances[0].private_ip_address to access the private IP address of the first instance in the list of instances that were created. Since we are creating one instance for each item in the loop, we can safely assume that there will be only one instance in the list for each item, and we can access it using index 0.
+      wait: true
+    loop: "{{ ec2_output.results }}"
+  - name: create r53 records with public IP
+    amazon.aws.route53:
+      state: present
+      zone: "{{ domain_name }}"
+      record: "public-{{ item.item }}-{{ env }}.{{ domain_name }}" # project-dev.amaravathi.today
+      type: A
+      ttl: 1
+      value: "{{ item.instances[0].public_ip_address }}" # this will set the value of the A record to the public IP address of the EC2 instance that was created in the previous task. We are using item.instances[0].public_ip_address to access the public IP address of the first instance in the list of instances that were created. Since we are creating one instance for each item in the loop, we can safely assume that there will be only one instance in the list for each item, and we can access it using index 0.
+      wait: true
+    loop: "{{ ec2_output.results }}"
+    when: item.item == "frontend"
