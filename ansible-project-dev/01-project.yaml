@@ -2,7 +2,7 @@
   hosts: localhost
   connection: local
   vars:
-    sg_id: sg-076ec9ad23dab2b28
+    sg_id: sg-0e73aab28da27d0a7
     ami_id: ami-0220d79f3f480ecf5
     domain_name: amaravathi.today
     env: dev
