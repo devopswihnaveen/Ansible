@@ -5,24 +5,24 @@
   - name: copy mongo repo
     ansible.builtin.copy:
       src: mongo.repo
-      dest: /etc/yum.repos.d/mongo.repo # this task will copy the mongo.repo file from the local machine to the remote machine at the specified destination. The mongo.repo file contains the repository information for MongoDB, which is required to install MongoDB using the package manager. By copying this file to the remote machine, we can ensure that the package manager can access the MongoDB repository and install MongoDB successfully.
+      dest: /etc/yum.repos.d/mongo.repo
 
   - name: install mongodb server
     ansible.builtin.dnf:
       name: mongodb-org
-      state: present # this task will install the mongodb-org package using the dnf module. The state: present parameter ensures that the package is installed if it is not already present on the system. If the package is already installed, this task will do nothing and move on to the next task.
+      state: present
   
   - name: allow remote connections
     ansible.builtin.replace:
       path: /etc/mongod.conf
       regexp: '127.0.0.1'
-      replace: '0.0.0.0' # this task will modify the mongod.conf file to allow remote connections to the MongoDB server. By default, MongoDB is configured to listen only on the localhost (
+      replace: '0.0.0.0'
 
   - name: start and enable mongodb
     ansible.builtin.service:
       name: mongod
       enabled: yes
-      state: started # this task will start the MongoDB service and enable it to start automatically on boot. The state: started parameter ensures that the service is running, and the enabled: yes parameter ensures that the service will start automatically when the system boots up. This is important to ensure that the MongoDB server is always available and running whenever the system is restarted.
+      state: started
 
   # - name: restart mongodb
   #   ansible.builtin.service:

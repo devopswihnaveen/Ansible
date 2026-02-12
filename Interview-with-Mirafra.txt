@@ -1,0 +1,13 @@
+1. Self Introduction
+2. Write a public and private subnet creation using terraform code
+3. write a Python automation script for EC2 VM monitoring (CPU, Disk Usage) alerts to Mail / Notification
+4. What is taint in Terraform and Kubernetes
+5. What is Lifecycle policy of Terraform
+6. Affinity and Node Affinity in Kubernetes
+7. CICD fail due to Dependencies mismatch from Nexus / Jfrog then how do you resolve
+8. Git clone and pull differences
+9. What is Multistage dockerfile and write a docker file for Java Application
+10. From Jenkins, Nodes crashed, then how do you resolve the issue ?
+11. How do you initiate nodes in Jenkins ? Write steps
+12. What is ADD and COPY in Docker files and give me differences
+
