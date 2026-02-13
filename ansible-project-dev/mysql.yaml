@@ -13,5 +13,15 @@
       state: restarted
       enabled: yes
 
-  - name: setup root password
-    ansible.builtin.command: mysql_secure_installation --set-root-pass RoboShop@1
+  - name: Create MySQL admin user for multiple hosts
+    community.mysql.mysql_user:
+      name: admin
+      password: naveen12
+      priv: "*.*:ALL,GRANT"
+      host: "{{ item }}"
+      state: present
+      login_user: root
+      login_password: RoboShop@1
+    loop:
+      - localhost
+      - "%"
