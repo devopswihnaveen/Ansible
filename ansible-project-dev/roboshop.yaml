@@ -12,6 +12,14 @@
     instances:
     - mongodb
     - catalogue
+    - redis
+    - user
+    - cart
+    - mysql
+    - shipping
+    - rabbitmq
+    - payment
+    - frontend
   tasks:
   ### CREATE ###
   - name: create ec2 instance
