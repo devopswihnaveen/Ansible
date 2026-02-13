@@ -13,6 +13,11 @@
       state: restarted
       enabled: yes
 
+  - name: Install PyMySQL for Python3
+    ansible.builtin.package:
+      name: python3-PyMySQL
+      state: present
+
   - name: Create MySQL admin user for multiple hosts
     community.mysql.mysql_user:
       name: admin
