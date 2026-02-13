@@ -1,0 +1,3 @@
+- name: Demo role
+  ansible.builtin.debug:
+    msg: "This is demo role"
